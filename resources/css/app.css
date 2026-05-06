@@ -1,0 +1,72 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* خط Tajawal (Google) */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+
+/* تنسيق عام على الجسم */
+@layer base{
+  body{@apply bg-gray-900 text-gray-100 font-sans;}
+}
+
+/* تحسينات للهواتف المحمولة */
+@layer utilities {
+  /* منع التكبير عند النقر المزدوج */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+  
+  /* تحسينات للمس */
+  @media (max-width: 768px) {
+    button, a, .btn, [role="button"] {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* تحسين حجم الخط */
+    body {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+    }
+    
+    /* تحسين المسافات */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    /* تحسين الجداول */
+    table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    /* تحسين النماذج */
+    input, textarea, select {
+      font-size: 16px; /* منع التكبير التلقائي في iOS */
+      min-height: 44px;
+    }
+  }
+  
+  /* تحسينات للشاشات الصغيرة جداً */
+  @media (max-width: 375px) {
+    .text-4xl { font-size: 1.75rem; }
+    .text-3xl { font-size: 1.5rem; }
+    .text-2xl { font-size: 1.25rem; }
+  }
+  
+  /* Safe area للهواتف الحديثة */
+  @supports (padding: max(0px)) {
+    .safe-area-inset-bottom {
+      padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    }
+    .safe-area-inset-top {
+      padding-top: max(1rem, env(safe-area-inset-top));
+    }
+  }
+}
